@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Home } from './containers/Home';
 import { Error404 } from './containers/errors/Error404';
-import './css/App.css';
+import './index.css';
 
 export const App:React.FC = () => {
   return (
