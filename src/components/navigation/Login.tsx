@@ -1,26 +1,46 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react/jsx-runtime';
-import { useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
+import { DataContext } from '../../context/context';
+import { loginUser } from '../../utils/AuthService';
 
 interface Props {
-  handler: ()=>void,
-  visible: boolean
+  visible: boolean,
+  action: ()=>void
 }
 
-export const Login: React.FC<Props> = ({handler, visible}) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+export const Login: React.FC<Props> = ({visible, action}) => {
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const {user, setUser} = useContext(DataContext);
+  const [error, setError] = useState(false);
+  const [data, setData] = useState({username:"",password:""});
+
+  useEffect(()=>{
+    setError(false);
+  },[])
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(username, password)
-    //onLogin(username, password);
+
+    try {
+      const user = await loginUser(data.username, data.password);
+      setUser(user);
+      action();
+    } catch (error) {
+      console.error("login ", error);
+      setError(true);
+    }
   };
+
+  const onChangeData = (event: ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = event.target;
+    setData({...data, [name]: value})
+  }
 
   return (
     <>
       <Transition appear show={visible} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={handler}>
+        <Dialog as="div" className="relative z-10" onClose={action}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -28,8 +48,7 @@ export const Login: React.FC<Props> = ({handler, visible}) => {
             enterTo="opacity-100"
             leave="ease-in duration-200"
             leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
+            leaveTo="opacity-0">
             <div className="fixed inset-0 bg-black/25" />
           </Transition.Child>
 
@@ -56,26 +75,29 @@ export const Login: React.FC<Props> = ({handler, visible}) => {
                       </label>
                       <input
                         type="text"
-                        placeholder='correo electrónico'
+                        placeholder="correo electrónico"
+                        name="username"
                         id="username"
-                        className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={data.username}
+                        className="border-2 border-stone-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        onChange={onChangeData}
                       />
                     </div>
-                    <div className="mb-6">
+                    <div className="mb-2">
                       <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
                         Contraseña
                       </label>
                       <input
                         type="password"
+                        name="password"
                         id="password"
-                        placeholder='contraseña'
-                        className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={data.password}
+                        placeholder="contraseña"
+                        className="border-2 border-stone-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        onChange={onChangeData}
                       />
                     </div>
+                    {error?<p className='mb-4 text-red-500 text-sm'>Error en usuario o contraseña</p>:<></>}
                     <button
                       type='submit'
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">

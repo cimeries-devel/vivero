@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-// import './css/index.css'
+import './css/App.css';
 import App from './App.tsx'
 
 

@@ -1,16 +1,18 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Home } from './containers/Home';
 import { Error404 } from './containers/errors/Error404';
-import './index.css';
+import { DataProvider } from './context/context';
 
 export const App:React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path='*' element={<Error404/>} />
-        <Route path='/' element={<Home />} />
-      </Routes>
-    </Router>
+    <DataProvider>
+      <Router>
+        <Routes>
+          <Route path='*' element={<Error404/>} />
+          <Route path='/' element={<Home />} />
+        </Routes>
+      </Router>
+    </DataProvider>
   )
 }
 

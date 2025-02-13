@@ -1,1 +1,6 @@
 @import 'tailwindcss';
+
+.navbar-bd .active{
+    color: black;
+    font-weight: 700;
+}
