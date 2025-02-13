@@ -15,7 +15,10 @@ export const Navbar: React.FC<Props> = ({ logo}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const handlerModal = () => setOpenModal(!openModal)
+  const handlerModal = () => {
+    setIsMobileMenuOpen(false);
+    setOpenModal(!openModal);
+  }
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const menuRef = useRef<HTMLDivElement>(null);
 

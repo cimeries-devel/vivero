@@ -1,4 +1,5 @@
 import React from "react"
+import { NavLink } from "react-router-dom";
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -10,8 +11,7 @@ export const Footer: React.FC = () => {
           <p>&copy; {currentYear} - UNAMAD.</p>
         </div>
         <div className="flex space-x-4">
-          <a href="#" className="hover:text-white">Terminos</a>
-          <a href="#" className="hover:text-white">Cambios</a>
+          <NavLink to={"/terms"} className="hover:text-white">Terminos y condiciones de uso</NavLink>
         </div>
       </div>
     </footer>
