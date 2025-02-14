@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { DataDocument } from '../context/context';
 
 interface Props {
-  data: []
+  data: DataDocument[]
 }
 
 export const FrecuencyGraph:React.FC<Props> = ({data}) => {

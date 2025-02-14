@@ -11,7 +11,7 @@ interface Props {
 
 export const Login: React.FC<Props> = ({visible, action}) => {
 
-  const {user, setUser} = useContext(DataContext);
+  const {setUser} = useContext(DataContext);
   const [error, setError] = useState(false);
   const [data, setData] = useState({username:"",password:""});
 

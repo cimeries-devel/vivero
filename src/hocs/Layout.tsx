@@ -4,7 +4,7 @@ import logo from '../assets/unamad.png'
 import React, { JSX } from 'react';
 
 interface Props {
-  children: JSX.Element[]
+  children: JSX.Element|JSX.Element[]
 }
 
 export const Layout:React.FC<Props> = ({children}) => {

@@ -10,7 +10,7 @@ interface Props {
 
 export const Navbar: React.FC<Props> = ({ logo}) => {
 
-  const {user, setUser} = useContext(DataContext);
+  const {user} = useContext(DataContext);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import {Layout} from '../hocs/Layout';
 import {Slider} from '../components/Slider';
 import { DataCard } from '../components/DataCard';
@@ -9,25 +9,6 @@ import { MicroAspersionControl } from '../components/FormMoisture';
 
 export const Home:React.FC = () => {
   const {user, loading, dataDocument, dataCollection} = useContext(DataContext);
-
-  useEffect(()=>{
-    // const db = getFirestore(firebase);
-    // const unsubscribe = snapshot(db, 'lse01', setLoading, setData)
-    // return () => unsubscribe()
-
-    // const docRef = doc(db, "pi", "lse01");
-    // getDoc(docRef)
-    //   .then((doc) => {
-    //     if (doc.exists()) {
-    //       setData(doc.data());
-    //       setLoading(true)
-    //     } else {
-    //       console.log("no hay data");
-    //     }
-    //   }).catch((error) => {
-    //     console.log("error al traer datos", error)
-    //   });
-  },[])
 
   return <Layout>
     <Slider />

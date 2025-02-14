@@ -2,7 +2,6 @@ import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, si
 import { firebase } from "../fb-credentials";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 
-// Registrar usuario
 export const registerUser = async (email: string, password: string) => {
   try {
     const auth = getAuth(firebase)
@@ -35,7 +34,18 @@ export const logoutUser = async () => {
   }
 };
 
-export const writerNewData = async (data) => {
+interface Data {
+  battery: number,
+  date: string,
+  fixed_moisture_max: number,
+  fixed_moisture_min: number,
+  soil_conductivity: number,
+  soil_moisture: number,
+  soil_temperature: number,
+  time: string,
+}
+
+export const writerNewData = async (data: Data) => {
   try {
     const db = getFirestore(firebase);
     await setDoc(doc(db, "pi", "lse01"), data);
