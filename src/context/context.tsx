@@ -13,6 +13,8 @@ export interface DataDocument {
   battery: number,
   fixed_moisture_max: number,
   fixed_moisture_min: number,
+  average: number,
+  status: boolean,
 }
 
 
@@ -27,20 +29,25 @@ interface Props {
   setDataCollection: Dispatch<SetStateAction<DataDocument[]>>,
 }
 
+const modelData = {
+  date: '',
+  time: '',
+  soil_temperature: 0,
+  soil_conductivity: 0,
+  soil_moisture: 0,
+  battery: 0,
+  fixed_moisture_max: 0,
+  fixed_moisture_min: 0,
+  average: 0,
+  status: false,
+  }
 
 export const DataContext = createContext<Props>({
   user: null,
   setUser: ()=>{},
   loading: false,
   setLoading: ()=>{},
-  dataDocument: {date: '',
-    time: '',
-    soil_temperature: 0,
-    soil_conductivity: 0,
-    soil_moisture: 0,
-    battery: 0,
-    fixed_moisture_max: 0,
-    fixed_moisture_min: 0},
+  dataDocument: {...modelData},
   setDataDocument: ()=>{},
   dataCollection: [],
   setDataCollection: ()=>[],
@@ -50,16 +57,7 @@ export const DataProvider = ({children}: {children:React.ReactNode}) => {
 
   const [user, setUser] = useState<User|null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [dataDocument, setDataDocument] = useState<DataDocument>({
-    date: '',
-    time: '',
-    soil_temperature: 0,
-    soil_conductivity: 0,
-    soil_moisture: 0,
-    battery: 0,
-    fixed_moisture_max: 0,
-    fixed_moisture_min: 0
-  });
+  const [dataDocument, setDataDocument] = useState<DataDocument>({...modelData});
   const [dataCollection, setDataCollection] = useState<DataDocument[]>([]);
 
 
@@ -84,7 +82,7 @@ export const DataProvider = ({children}: {children:React.ReactNode}) => {
   useEffect(()=> {
     const auth = getAuth(firebase)
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (!currentUser) setUser(currentUser);
+      setUser(currentUser);
       setLoading(false)
     });
     return () => unsubscribe();

@@ -57,9 +57,9 @@ export const Navbar: React.FC<Props> = ({ logo}) => {
           <li className="md:ml-6 mt-3 md:mt-0 w-full md:w-auto">
             <NavLink to={"/about"} className="hover:text-grey-950 block text-center">Acerca de</NavLink>
           </li>
-          <li className="md:ml-6 mt-3 md:mt-0 w-full md:w-auto">
-            <NavLink to={"/us"} className="hover:text-grey-800 block text-center">Nosotros</NavLink>
-          </li>
+          {user?<li className="md:ml-6 mt-3 md:mt-0 w-full md:w-auto">
+            <NavLink to={"/us"} className="hover:text-grey-800 block text-center">Reportes</NavLink>
+          </li>:<></>}
           <li className="md:ml-6 mt-3 md:mt-0 w-full md:w-auto">
             <button
               onClick={()=>setOpenModal(true)}

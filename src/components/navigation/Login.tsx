@@ -21,11 +21,11 @@ export const Login: React.FC<Props> = ({visible, action}) => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
     try {
       const user = await loginUser(data.username, data.password);
       setUser(user);
       action();
+      window.location.reload();
     } catch (error) {
       console.error("login ", error);
       setError(true);
