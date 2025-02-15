@@ -1,18 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { writerNewData } from "../utils/AuthService";
-import { DataContext } from "../context/context";
+import { DataContext, modelData } from "../context/context";
+
 
 export const MicroAspersionControl = () => {
   const {dataDocument} = useContext(DataContext);
-  const [data, setData] = useState({
-    battery: 0,
-    date: "",
-    fixed_moisture_max: 0,
-    fixed_moisture_min: 0,
-    soil_conductivity: 0,
-    soil_moisture: 0,
-    soil_temperature: 0,
-    time: ""});
+  const [data, setData] = useState({...modelData});
 
   const onChangedData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target;
@@ -21,6 +14,7 @@ export const MicroAspersionControl = () => {
 
   const handleButtonClick = async () => {
     try {
+      data.status = data.soil_moisture < data.fixed_moisture_min;
       await writerNewData(data);
       alert("Valores actualizados correctamente.");
     } catch (error) {

@@ -29,7 +29,7 @@ interface Props {
   setDataCollection: Dispatch<SetStateAction<DataDocument[]>>,
 }
 
-const modelData = {
+export const modelData = {
   date: '',
   time: '',
   soil_temperature: 0,
