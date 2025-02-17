@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 import {Layout} from '../hocs/Layout';
 import {Slider} from '../components/Slider';
 import { DataCard } from '../components/DataCard';
-import measure from '../assets/measure.png';
 import {AreaChartGraph, FrecuencyGraph} from '../components/Graphs';
 import { DataContext } from '../context/context';
 import { MicroAspersionControl } from '../components/FormMoisture';
+import measure from '../assets/measure.png';
+import conductivity from '../assets/conductivity.png';
+import temperature from '../assets/temperature.png';
 
 export const Home:React.FC = () => {
   const {user, loading, dataDocument, dataCollection} = useContext(DataContext);
@@ -18,7 +20,7 @@ export const Home:React.FC = () => {
     <h3 className='flex justify-center font-bold text-md'>
       <p className='pr-2'>Estado de los aspersores:</p>
       <p className={`${dataDocument.status?'text-green-400':'text-red-400'}`}>
-        {dataDocument.status?"Activado":"No activado"}
+        {dataDocument.status?"Activado":"Desactivado"}
       </p>
     </h3>
     <div>
@@ -33,13 +35,13 @@ export const Home:React.FC = () => {
         <DataCard
           label='Temperatura'
           value={dataDocument.soil_temperature}
-          image={measure}
+          image={temperature}
           color='text-red-500'
           nomenclature='ºC'/>
         <DataCard
           label='Conductividad'
           value={dataDocument.soil_conductivity}
-          image={measure}
+          image={conductivity}
           color='text-yellow-500'
           nomenclature='uS/cm'/>
       </>):(

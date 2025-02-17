@@ -5,10 +5,11 @@ import { DataContext } from '../../context/context';
 import { Logout } from './Logout';
 
 interface Props {
-  logo: string
+  logo: string,
+  logo_vivero: string,
 }
 
-export const Navbar: React.FC<Props> = ({ logo}) => {
+export const Navbar: React.FC<Props> = ({logo, logo_vivero}) => {
 
   const {user} = useContext(DataContext);
 
@@ -45,7 +46,8 @@ export const Navbar: React.FC<Props> = ({ logo}) => {
       <div className="text-grey flex items-center gap-2">
         <img src={logo} alt="Logo" className="h-10 w-auto" />
         <p className='text-pink-600 text-[1.6rem] font-bold'>UNAMAD</p>
-        <p className='w-15 text-[13px] font-bold border-l-2 border-l-white-400 pl-2'>Proyecto vivero</p>
+        {/* <p className='w-15 text-[13px] font-bold border-l-2 border-l-white-400 pl-2'>Proyecto vivero</p> */}
+        <img src={logo_vivero} alt="Logo vivero" className="h-10 w-auto" />
       </div>
 
       {/* Menú de navegación */}
@@ -58,7 +60,7 @@ export const Navbar: React.FC<Props> = ({ logo}) => {
             <NavLink to={"/about"} className="hover:text-grey-950 block text-center">Acerca de</NavLink>
           </li>
           {user?<li className="md:ml-6 mt-3 md:mt-0 w-full md:w-auto">
-            <NavLink to={"/us"} className="hover:text-grey-800 block text-center">Reportes</NavLink>
+            <NavLink to={"/reports"} className="hover:text-grey-800 block text-center">Reportes</NavLink>
           </li>:<></>}
           <li className="md:ml-6 mt-3 md:mt-0 w-full md:w-auto">
             <button

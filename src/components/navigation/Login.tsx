@@ -3,6 +3,7 @@ import { Fragment } from 'react/jsx-runtime';
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../context/context';
 import { loginUser } from '../../utils/AuthService';
+import { NavLink } from 'react-router-dom';
 
 interface Props {
   visible: boolean,
@@ -97,10 +98,11 @@ export const Login: React.FC<Props> = ({visible, action}) => {
                         onChange={onChangeData}
                       />
                     </div>
-                    {error?<p className='mb-4 text-red-500 text-sm'>Error en usuario o contraseña</p>:<></>}
+                    {error?<p className='text-red-500 text-sm'>Error en usuario o contraseña</p>:<></>}
+                    <NavLink className='block text-blue-600' to={"/recovery"}>¿Olvidó su contraseña?</NavLink>
                     <button
                       type='submit'
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-3">
                       Iniciar sesión
                     </button>
                   </form>

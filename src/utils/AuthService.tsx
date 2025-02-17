@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { firebase } from "../fb-credentials";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 
@@ -31,6 +31,16 @@ export const logoutUser = async () => {
   } catch (error) {
     console.error("Error al cerrar sesión:", error);
     throw error;
+  }
+};
+
+export const recoveryPassword = async (email: string) => {
+  try {
+    const auth = getAuth(firebase);
+    await sendPasswordResetEmail(auth, email);
+    return true;
+  } catch (error) {
+    return false;
   }
 };
 

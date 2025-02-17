@@ -10,7 +10,7 @@ export const FrecuencyGraph:React.FC<Props> = ({data}) => {
 
   return (
     <div className='py-10'>
-      <h3 className='text-center text-xl font-bold'>Gráfica de Lineal</h3>
+      <h3 className='text-center text-xl font-bold'>Gráfica Lineal</h3>
       <h4 className='text-center text-md'>Humedad - Temperatura - Conductividad VS Tiempo</h4>
       <ResponsiveContainer className="pr-2 md:px-20 lg:px-40 xl:px-80" width={"100%"} height={400}>
         <LineChart data={data} margin={{ top: 20 }} accessibilityLayer>
