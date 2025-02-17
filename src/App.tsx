@@ -4,6 +4,7 @@ import { Error404 } from './containers/errors/Error404';
 import { DataProvider } from './context/context';
 import { Recovery } from './containers/Recovery';
 import { Reports } from './containers/Reports';
+import { About } from './containers/About';
 
 export const App:React.FC = () => {
   return (
@@ -12,6 +13,7 @@ export const App:React.FC = () => {
         <Routes>
           <Route path='*' element={<Error404/>} />
           <Route path='/' element={<Home />} />
+          <Route path='about' element={<About /> } />
           <Route path='/reports' element={<Reports />} />
           <Route path='/recovery' element={<Recovery />} />
         </Routes>

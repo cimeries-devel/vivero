@@ -2,6 +2,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react/jsx-runtime';
 import React from 'react';
 import { logoutUser } from '../../utils/AuthService';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   visible: boolean,
@@ -9,12 +10,12 @@ interface Props {
 }
 
 export const Logout: React.FC<Props> = ({visible, action}) => {
-
+  const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     logoutUser();
     action();
-    window.location.reload()
+    navigate("/");
   };
 
 
