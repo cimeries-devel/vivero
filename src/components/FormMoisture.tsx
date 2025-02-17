@@ -34,7 +34,7 @@ export const MicroAspersionControl = () => {
       <div className="flex flex-col gap-4 items-center">
         {/* Input Máximo */}
         <div className="flex items-center gap-4">
-          <label className="text-md font-semibold">Humedad Máxima:</label>
+          <label className="text-md font-semibold">Capacidad de campo (CC):</label>
           <input
             type="number"
             name="fixed_moisture_max"
@@ -47,7 +47,7 @@ export const MicroAspersionControl = () => {
         </div>
         {/* Input Mínimo */}
         <div className="flex items-center gap-4">
-          <label className="text-md font-semibold">Humedad Mínima:</label>
+          <label className="text-md font-semibold">Punto de marchitez permanente (PMP):</label>
           <input
             type="number"
             name="fixed_moisture_min"
