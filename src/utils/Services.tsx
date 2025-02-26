@@ -28,10 +28,12 @@ export const queryCollection = async (date: string) => {
   try {
     const collectionRef = collection(db, date);
     const query = await getDocs(collectionRef);
-    const data = Array<DataDocument>()
-    query.forEach((doc) => {data.push(doc.data() as DataDocument)});
+    const data = Array<DataDocument>();
+    query.forEach((doc) => {
+      data.push(doc.data() as DataDocument);
+    });
     return data;
   } catch (error) {
-    return Array<DataDocument>()
+    return Array<DataDocument>();
   }
 };
