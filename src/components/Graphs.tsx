@@ -15,7 +15,7 @@ import { DataDocument } from "../context/context";
 
 interface Props {
   data: DataDocument[];
-  h2: string;
+  h2?: string;
 }
 
 export const FrecuencyGraph: React.FC<Props> = ({ data }) => {
